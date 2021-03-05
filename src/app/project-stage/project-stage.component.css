@@ -1,0 +1,18 @@
+.project_stage {
+  background: whitesmoke;
+  box-shadow: 6px 6px 16px rgba(163, 163, 163, 0.6), 8px 8px 16px #FFFFFF, inset 4px 4px 16px rgba(203, 203, 203, 0.25);
+  border-radius: 10px;
+  margin: 10px;
+  padding: 5px;
+  height: auto;
+}
+.project_stage_name {
+  background-color: lightgreen;
+  border-radius: 10px;
+  margin: 3px;
+  border: 1px solid gray;
+  text-align: center;
+  padding: 5px;
+  width: -moz-available;
+  width: -webkit-fill-available;
+}

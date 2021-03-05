@@ -1,0 +1,11 @@
+<div class="project_stage">
+  <button class="project_stage_name" (click)="stageName()">{{title}}</button>
+  <ul>
+    <li *ngFor="let proj of projects">
+      {{proj}}
+      <app-project>
+      </app-project>
+    </li>
+  </ul>
+  <button (click)="addProject()">Add</button>
+</div>
