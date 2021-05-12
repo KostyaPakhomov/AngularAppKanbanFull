@@ -1,11 +1,49 @@
 <div class="project_stage">
-  <button class="project_stage_name" (click)="stageName()">{{title}}</button>
-  <ul>
-    <li *ngFor="let proj of projects">
-      {{proj}}
-      <app-project>
-      </app-project>
-    </li>
-  </ul>
-  <button (click)="addProject()">Add</button>
+  <div class="project_header">
+
+    <div class="project_stage_name">{{stage.title}}</div>
+    <button class="info_stage">&middot;&middot;&middot;</button>
+  </div>
+  <div class="input-field" [ngStyle]="{display: showTask}">
+    <button (click)="closeTaskAdding()">Close</button>
+    <label>
+      <input type="text" placeholder="Add taskName" [(ngModel)]="taskName"
+             name="taskName">
+      <input type="text" placeholder="Add reporter" [(ngModel)]="reporter"
+             name="reporter">
+      <textarea type="text" placeholder="Add description" [(ngModel)]="description"
+                name="reporter"></textarea>
+      <input type="text" placeholder="Add ticket number" [(ngModel)]="ticketNum"
+             name="reporter">
+      <input type="text" placeholder="Add due date" [(ngModel)]="dueDate"
+             name="reporter">
+      <select [(ngModel)]="labels" (change)="findOption(this)">
+        <option disabled selected>Color</option>
+        <option value="blue">Blue</option>
+        <option>Red</option>
+        <option>Green</option>
+        <option>Yellow</option>
+      </select>
+
+    </label>
+      <button class="add_new_task" (click)="addNewTask()">Add new task</button>
+  </div>
+<!--  <div class="tasks-list"-->
+<!--       cdkDropList-->
+<!--       [cdkDropListData]="stage.tasks"-->
+<!--       (cdkDropListDropped)="onDrop($event)"-->
+<!--  >-->
+
+  <div *ngIf="stage" class="tasks_box">
+    <ng-container *ngFor="let task of stage.tasks">
+      <app-project-stage-task
+      [taski]="task"
+      [option]="option"
+      (newComment)="newComment($event, task)"
+      ></app-project-stage-task>
+    </ng-container>
+    </div>
+  <button class="add_task" (click)="addTask()">Add task</button>
+
+  <!--  </div>-->
 </div>

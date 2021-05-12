@@ -1,5 +1,43 @@
-<ul>
-  <li *ngFor="let task of tasks">{{task}}</li>
-</ul>
-<button (click)="addTask()">Add</button>
+<!--<div class="new_project" *ngFor="let newProj of newProjects" >-->
+<!--  <span class = "projectName">{{newProj}}</span>-->
+<!--<div class="new_project" [ngStyle]="{'display': (project.id == option) ? 'block':'none'}">-->
+<div class="new_project" [ngStyle]="{'display': (project.id == currentId) ? 'block':'none'}">
+<!--  <span class = "projectName">{{project.projectName}}</span><br>-->
+  <div class="card_content">
 
+    <div class="stages" id = "stages" cdkDropListGroup *ngIf="project.stages">
+      <ng-container *ngFor="let stage of project.stages">
+
+      <app-project-stage class="stage"
+        [stage]="stage"
+        (newTask)="newTask($event, stage)"
+        [project]="project"
+      >
+<!--                         (newComments)="newComments($event, stage)"-->
+<!--      >-->
+<!--                         (dblclick)="deleteStage($event, stage)"-->
+<!--      >-->
+
+      </app-project-stage>
+
+      </ng-container>
+      <div class="btn_add_stage">
+      <button [disabled]="disabled" class="add_stage" (click)="addStage()">Add stage</button>
+      <br>
+
+      <div class="input_field" [ngStyle]="{display: showNewStage}">
+        <button (click)="closeStageAdding()">Close</button>
+        <input type="text" placeholder="Add stage title" [(ngModel)]="stageTitle"
+               name="stage_title">
+        <!--      <label>-->
+        <!--      </label>-->
+        <input type="text" placeholder="Add stage number" [(ngModel)]="stageNum"
+               name="stage_id">
+        <button (click)="addNewStage()">Add new stage</button>
+      </div>
+      </div>
+    </div>
+    <!--        <div class="comments" *ngIf="comments.length > 0; else noItems">-->
+
+  </div>
+</div>

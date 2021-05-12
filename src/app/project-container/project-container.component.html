@@ -1,0 +1,40 @@
+<div class="all_projects">
+<div class="project_name" *ngIf="projName">{{projName}}</div>
+<!--  <button (click)="showAllProjects()"></button>-->
+  <div class="menu">Menu</div>
+  <div class="all_projects_container">
+    <button class="add_new_project" [ngStyle]="{'display': showProjBtn}" (click)="addProject()">Add project</button>
+
+    <div class="input-field" [ngStyle]="{'display': showProjectAdding}">
+      <div class="hide">
+      <input class="input_projectName" type="text" placeholder="Add project" [(ngModel)]="projectName"
+             name="projectName">
+        <button class="add_project"  (click)="addNewProject()">Add new project</button>
+      </div>
+      <button class="hide_project_adding" (click)="hideProjectAdding()">&times;</button>
+    </div>
+      <span>Projects</span>
+      <input type="text" class="searchProject" placeholder="Search..." [(ngModel)]="filterTerm">
+    <button *ngFor="let project of projects | filter:filterTerm" (click)="showCurrentProject(project)">{{project.projectName}}</button>
+  </div>
+
+<div *ngIf="projects" class="projects"  >
+  <ng-container class="container" *ngFor="let project of projects" >
+    <app-project class="cont"
+      [project]='project'
+                 [currentId]="currentId"
+    >
+
+    </app-project>
+  </ng-container>
+</div>
+  <a class="redirect" routerLink="/board">User</a>
+</div>
+<!--<div class="card_content">-->
+<!--  <form (ngSubmit)="addStage()" class="form">-->
+<!--  </form>-->
+
+<!--  &lt;!&ndash;        <div class="comments" *ngIf="comments.length > 0; else noItems">&ndash;&gt;-->
+
+<!--</div>-->
+<!--<button class="add_stage" (click)="addStage()">Add stage</button>-->

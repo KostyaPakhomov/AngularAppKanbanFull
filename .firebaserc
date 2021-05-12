@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "angularappkanban"
+  },
+  "targets": {
+    "angularappkanban": {
+      "hosting": {
+        "angular-app-kanban": [
+          "angularappkanban"
+        ]
+      }
+    }
   }
 }

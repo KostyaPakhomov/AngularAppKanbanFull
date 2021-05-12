@@ -1,0 +1,102 @@
+<div class="tasks_box" draggable="true" cdkDrag>
+<!--     cdkDropList-->
+<!--     [cdkDropListData]="tasks"-->
+<!--     (cdkDropListDropped)="onDrop($event)"-->
+<!--&gt;-->
+
+<!--<div class="task" *ngFor="let task of taskss"-->
+<!--     draggable="true" cdkDrag>-->
+  <div class="task">
+<!--       draggable="true" cdkDrag>-->
+  <div class="label_block" [ngStyle]="{backgroundColor: taski.labels}"></div>
+  {{taski.taskName}} <br>
+  {{taski.reporter}}<br>
+    {{taski.description}}<br>
+    {{taski.createdDate!.seconds * 1000 | date: 'dd.MM.yyyy'}}<br>
+    {{((taski.dueDate! * 24 * 3600) + taski.createdDate!.seconds) * 1000 | date: 'dd.MM.yyyy'}}<br>
+    {{taski.ticketNum}}<br>
+
+    <div class="comments_img" *ngIf="taski.comments?.length != 0; else noItems">
+      <button class="comments"  (click)="showAllComments()"></button> <span class="comments_count">{{taski.comments?.length}}</span>
+
+    </div>
+    <ng-template #noItems>
+      <div class="no_comments"><button class="add_new_comment" (click)="addComment()">+</button>
+      </div>
+      <div class="input-field" [ngStyle]="{display: showComment}">
+        <button (click)="closeCommentAdding()">Close</button>
+        <label>
+          <input type="text" placeholder="Add Comment" [(ngModel)]="commentText"
+                 name="taskName">
+        </label>
+        <button class="add_new_task" (click)="addNewComment()">Add new comment</button>
+      </div>
+
+    </ng-template>
+
+    <div *ngIf="taski" class="comments_box" [ngStyle]="{display: showComments}">
+      <button [disabled]="disabled" class="add_comment" (click)="addComment()">Add comment</button>
+      <div class="input-field" [ngStyle]="{display: showComment}">
+        <button (click)="closeCommentAdding()">Close</button>
+        <label>
+          <input type="text" placeholder="Add Comment" [(ngModel)]="commentText"
+                 name="taskName">
+        </label>
+        <button class="add_new_task" (click)="addNewComment()">Add new comment</button>
+      </div>
+
+      <ng-container *ngFor="let comment of taski.comments">
+        <app-comments
+          [comments]="comment"
+        ></app-comments>
+        <br>
+      </ng-container>
+    </div>
+    <!--    {{(thisDate!.seconds - taski.createdDate!.seconds) / 3600}}<br>-->
+  <!--  <div *ngFor="let comment of comments" class="comm_collection">-->
+<!--    {{comment.commentText}}-->
+<!--  </div>-->
+<!--  <div class="comments" *ngIf="comments.length > 0; else noItems">-->
+
+<!--    <ng-template #noItems>-->
+<!--      <hr>-->
+<!--      <h5>No comments</h5>-->
+<!--    </ng-template>-->
+
+<!--  <button class="comments" (click)="showComments()">Comments</button>-->
+<!--<div class="comm_count">{{comments.length}}</div>-->
+<!--  <div class="comm_content" id="comm_content">-->
+<!--    <button class="hide_comments" (click)="hideComments()">Hide comments</button>-->
+<!--    <form (ngSubmit)="onSubmit()" class="form">-->
+<!--        <div class="input-field">-->
+<!--          <input type="text" placeholder="Add comment" [(ngModel)]="comment.commentText"-->
+<!--                 name="comment">-->
+<!--          <label>Comment</label>-->
+<!--        </div>-->
+<!--        <div class="input-field">-->
+<!--          <input type="text" placeholder="Add author" [(ngModel)]="comment.commentAuthor"-->
+<!--                 name="author">-->
+<!--          <label>Author</label>-->
+<!--        </div>-->
+<!--&lt;!&ndash;        <div class="input-field">&ndash;&gt;-->
+<!--&lt;!&ndash;          <input type="text" placeholder="Add data" [(ngModel)]="comment.commentDate"&ndash;&gt;-->
+<!--&lt;!&ndash;                 name="data">&ndash;&gt;-->
+<!--&lt;!&ndash;          <label>Data</label>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--        <input type="submit" value="Submit" class = "btn">-->
+<!--      </form>-->
+<!--      &lt;!&ndash;        <div class="comments" *ngIf="comments.length > 0; else noItems">&ndash;&gt;-->
+<!--    <div class="comm_collection" *ngFor="let comm of comments">-->
+<!--      <span>{{comm.commentText}}</span><br>-->
+<!--      <strong>{{comm.commentAuthor}}</strong><br>-->
+<!--      <em>{{comm.commentDate!.seconds * 1000 | date: 'medium'}}</em>-->
+<!--    </div>-->
+
+<!--    </div>-->
+
+  </div>
+
+</div>
+
+<!--<button class="add_task" (click)="addTask()">+ Add task</button>-->
+
