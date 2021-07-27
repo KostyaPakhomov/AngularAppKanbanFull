@@ -20,10 +20,6 @@ export class ProjectComponent implements OnInit {
   project!: ProjectModel;
   @Input() option!: string;
   @Input() currentId!: number | string | undefined;
-  // stage!: StageModel;
-  // stage!: StageModel;
-  // sta!: StageModel;
-  // tasks!: TaskModel[];
   stageTitle!: string;
   stageNum!: number;
   showNewStage!: string;
@@ -32,10 +28,6 @@ export class ProjectComponent implements OnInit {
   constructor(private stageService: StageService, private projectService: ProjectService) {
   }
   ngOnInit(): void {
-    // this.projectService.getStages().subscribe(stages => {
-    //   console.log('THIS STAGES' + stages);
-    //   // this.stages = stages;
-    // });
   }
   addNewStage(): void {
       const stage: StageModel = {
@@ -50,7 +42,6 @@ export class ProjectComponent implements OnInit {
   addStage(): void {
     this.showNewStage = 'inline-block';
     this.disabled = true;
-    // return this.showTask ? 'block' : 'none';
   }
   closeStageAdding(): void {
     this.showNewStage = 'none';
@@ -58,7 +49,6 @@ export class ProjectComponent implements OnInit {
   }
   // tslint:disable-next-line:typedef
   newTask(task: TaskModel, stage: StageModel) {
-    // this.project.stages?.map(stage => stage.tasks?.push(task));
       const elemIds = this.project.stages?.map(el => el.id);
       // @ts-ignore
     // tslint:disable-next-line:prefer-for-of
@@ -69,41 +59,10 @@ export class ProjectComponent implements OnInit {
           if (stage.id == elementId) {
             console.log(stage.id + '' + elementId);
             stage.tasks?.push(task);
-            // return stage.id;
           }
         }
       }
       this.projectService.addTask(this.project);
   }
 
-  // tslint:disable-next-line:typedef
-  // newComments(comment: Comment, stage: StageModel) {
-  //   // this.project.stages?.map(stage => stage.tasks?.push(task));
-  //   const elemIds = this.project.stages?.map(el => el.id);
-  //   // @ts-ignore
-  //   // tslint:disable-next-line:prefer-for-of
-  //   for (let i = 0; i < elemIds?.length; i++) {
-  //     if (elemIds) {
-  //       const elementId = elemIds[i];
-  //       // tslint:disable-next-line:triple-equals
-  //       if (stage.id == elementId) {
-  //         // console.log(stage.id + '' + elementId);
-  //         stage.tasks?.map(el => {
-  //           const elem = el.comments;
-  //           elem?.push(comment);
-  //         });
-  //       }
-  //     }
-  //   }
-  //   this.projectService.addComment(this.project);
-  // }
-
-  // // @ts-ignore
-  // deleteStage(event, stage: StageModel): void {
-  //   const message = confirm('Do you really want to delete this stage?');
-  //   // alert(message);
-  //   if (message === true) {
-  //     this.stageService.deleteStage(stage);
-  //   }
-  // }
 }
